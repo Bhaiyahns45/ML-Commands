@@ -33,7 +33,7 @@
 ### get all categorial columns name
     df.select_dtypes(include=['object']).columns.tolist()
    
-### get all categorial columns name
+### get all numerical columns name
     df.select_dtypes(include=np.number).columns.tolist()
     
     
