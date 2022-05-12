@@ -50,5 +50,25 @@
     plt.xlabel('Predicted')
     plt.ylabel('Truth')
     
-    
-    
+### for doing one_hot encoding fot all categorical features
+
+    def category_onehot_categorical_col(categorical_col,final_df):
+    df_final=final_df
+    i=0
+    for fields in categorical_col:
+        
+        print(fields)
+        df1=pd.get_dummies(final_df[fields],drop_first=True)
+        
+        final_df.drop([fields],axis=1,inplace=True)
+        if i==0:
+            df_final=df1.copy()
+        else:
+            
+            df_final=pd.concat([df_final,df1],axis=1)
+        i=i+1
+       
+        
+    df_final=pd.concat([final_df,df_final],axis=1)
+        
+    return df_final
