@@ -72,3 +72,29 @@
     df_final=pd.concat([final_df,df_final],axis=1)
         
     return df_final
+    
+    
+    
+### other commands
+
+    num_df = df.select_dtypes(include=np.number)
+   
+    corr_df=num_df.corr()
+    plt.figure(figsize=(16,9))
+    sns.heatmap(corr_df, annot=True, linewidths=2)
+    
+    
+    
+    
+    # with the following function we can select highly correlated features
+    # it will remove the first feature that is correlated with anything other feature
+
+    def correlation(dataset, threshold):
+        col_corr = set()  # Set of all the names of correlated columns
+        corr_matrix = dataset.corr()
+        for i in range(len(corr_matrix.columns)):
+            for j in range(i):
+                if abs(corr_matrix.iloc[i, j]) > threshold: # we are interested in absolute coeff value
+                    colname = corr_matrix.columns[i]  # getting the name of column
+                    col_corr.add(colname)
+        return col_corr
