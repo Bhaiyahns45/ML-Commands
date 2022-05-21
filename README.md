@@ -98,3 +98,8 @@
                     colname = corr_matrix.columns[i]  # getting the name of column
                     col_corr.add(colname)
         return col_corr
+        
+        
+        
+    [df.loc[df['tag'] == i, 'links'] for i in all_links]
+    [df.loc[df["tag"]==i].links.values[0] for i in l]
