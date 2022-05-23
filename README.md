@@ -75,16 +75,13 @@
     
     
     
-### other commands
+### heatmap
 
     num_df = df.select_dtypes(include=np.number)
    
     corr_df=num_df.corr()
     plt.figure(figsize=(16,9))
     sns.heatmap(corr_df, annot=True, linewidths=2)
-    
-    
-    
     
     # with the following function we can select highly correlated features
     # it will remove the first feature that is correlated with anything other feature
@@ -98,8 +95,51 @@
                     colname = corr_matrix.columns[i]  # getting the name of column
                     col_corr.add(colname)
         return col_corr
-        
+
+
+### other commands
         
         
     [df.loc[df['tag'] == i, 'links'] for i in all_links]
+    
     [df.loc[df["tag"]==i].links.values[0] for i in l]
+    
+    df.drop(df[df['Age'] < 25].index, inplace = True)
+    
+    df.rename(columns=lambda x: x.replace('$', ''), inplace=True)
+    
+    df.loc[df['id'] == 20 ], 'budget'] = 50
+    
+    df.loc[df['release_date'].isnull() == true ], 'release_date'] = '01/01/1998'
+    
+    with open('dict.pkl', 'wb') as f:
+        pickle.dump(d, f)
+        
+        
+    with open('dict.pkl', 'rb') as f:
+        d = pickle.load(f)
+        
+        
+        
+    df2['FromTime'] = pd.to_datetime(df2['FromTime'])
+    df2['ToTime'] = pd.to_datetime(df2['ToTime'])
+    
+    
+    from datetime import datetime, date, timedelta
+
+    import datetime
+    start_datetime= datetime.datetime(2022,5,11, 1,29,0)
+
+    print(start_datetime + timedelta(minutes = 735 ))
+    
+    df1['rel'] = df1['rel'].apply(lambda x: '(' + x + ')' if x != " " else "" )
+    
+    df1['order_no'] = df1[['order_no','rel']].apply(lambda x: ''.join(map(str,x)), axis=1)
+    
+    df1["rel"] = ["Yes" if len(df1.rel[i]) == 0 else "NO" for i in range(len(df1))]
+    
+    df1['order_no'] = df1[['order_no','rel']].apply(lambda x: ''.join(map(str,x[x.notnull()])), axis=1)
+    
+    df1['new_col'] = df1['rem_ops'].apply(lambda x: "yes" if 'A' in str(x) else "" ) 
+    
+    df1['prev_op_end_time'].mask(df1['prev_op_end_time'] == 'First Operation', '', inplace=True)
