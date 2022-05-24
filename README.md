@@ -121,6 +121,16 @@
         
         
         
+    import plotly.express as px
+        
+    percent_missing = df.isnull().sum() * 100 / len(df)
+    missing_value_df = pd.DataFrame({'column_name': df.columns,'percent_missing': percent_missing})
+    missing_value_df.sort_values(by=['percent_missing'], inplace=True,ascending=False )
+    fig = px.bar(missing_value_df, x='column_name', y='percent_missing', title="Missing value %",height=700)
+    fig.show()
+        
+        
+        
     df2['FromTime'] = pd.to_datetime(df2['FromTime'])
     df2['ToTime'] = pd.to_datetime(df2['ToTime'])
     
