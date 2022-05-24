@@ -156,3 +156,6 @@
     
     ignore_name =['CCLK','No-Plastic','NoWash']
     df['special_column'] = df['Special'].apply(lambda x: ','.join(list(set(x.split(",")) - set(ignore_name))))
+    
+    from collections import Counter
+    Counter(train_copy.dtypes.values)
