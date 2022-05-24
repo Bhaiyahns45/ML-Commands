@@ -143,3 +143,6 @@
     df1['new_col'] = df1['rem_ops'].apply(lambda x: "yes" if 'A' in str(x) else "" ) 
     
     df1['prev_op_end_time'].mask(df1['prev_op_end_time'] == 'First Operation', '', inplace=True)
+    
+    ignore_name =['CCLK','No-Plastic','NoWash']
+    df['special_column'] = df['Special'].apply(lambda x: ','.join(list(set(x.split(",")) - set(ignore_name))))
