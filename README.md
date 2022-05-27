@@ -142,6 +142,9 @@
 
     print(start_datetime + timedelta(minutes = 735 ))
     
+    
+    df['spend_date_mt']=pd.to_datetime(df['spend_date_mt'].astype(str), format='%d-%m-%Y')
+    
     df1['rel'] = df1['rel'].apply(lambda x: '(' + x + ')' if x != " " else "" )
     
     df1['order_no'] = df1[['order_no','rel']].apply(lambda x: ''.join(map(str,x)), axis=1)
