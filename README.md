@@ -162,3 +162,8 @@
     
     from collections import Counter
     Counter(train_copy.dtypes.values)
+    
+    
+    index_names = df[ (df.Device == "Montage Endtaetigkeit / stat. IBS (Werk)") | (df.Device == "Montage")].index
+    df.drop(index_names, inplace = True)
+    df.reset_index(inplace=True)
