@@ -167,3 +167,6 @@
     index_names = df[ (df.Device == "Montage Endtaetigkeit / stat. IBS (Werk)") | (df.Device == "Montage")].index
     df.drop(index_names, inplace = True)
     df.reset_index(inplace=True)
+    
+    df1 = df[(df["Production_line"] == pl_id )  & (df["Task"] == "Operation Change")]
+    df1 = df[(df["Production_line"].notnull() )  & (df["Task"] == "Operation Change")]
