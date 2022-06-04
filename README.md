@@ -96,6 +96,26 @@
                     col_corr.add(colname)
         return col_corr
 
+## date-time
+
+    df1['Start'] = df1['Start'].dt.strftime('%b %d %Y %X')
+    df1['Finish'] = df1['Finish'].dt.strftime('%b %d %Y %X')
+    
+    
+    df2['FromTime'] = pd.to_datetime(df2['FromTime'])
+    df2['ToTime'] = pd.to_datetime(df2['ToTime'])
+    
+    
+    from datetime import datetime, date, timedelta
+
+    import datetime
+    start_datetime= datetime.datetime(2022,5,11, 1,29,0)
+
+    print(start_datetime + timedelta(minutes = 735 ))
+    
+    
+    df['spend_date_mt']=pd.to_datetime(df['spend_date_mt'].astype(str), format='%d-%m-%Y')
+
 
 ### other commands
         
@@ -131,19 +151,7 @@
         
         
         
-    df2['FromTime'] = pd.to_datetime(df2['FromTime'])
-    df2['ToTime'] = pd.to_datetime(df2['ToTime'])
-    
-    
-    from datetime import datetime, date, timedelta
-
-    import datetime
-    start_datetime= datetime.datetime(2022,5,11, 1,29,0)
-
-    print(start_datetime + timedelta(minutes = 735 ))
-    
-    
-    df['spend_date_mt']=pd.to_datetime(df['spend_date_mt'].astype(str), format='%d-%m-%Y')
+   
     
     df1['rel'] = df1['rel'].apply(lambda x: '(' + x + ')' if x != " " else "" )
     
