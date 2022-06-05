@@ -178,3 +178,7 @@
     
     df1 = df[(df["Production_line"] == pl_id )  & (df["Task"] == "Operation Change")]
     df1 = df[(df["Production_line"].notnull() )  & (df["Task"] == "Operation Change")]
+    
+    
+    
+    df["Detail"] = df["Order_Op"].apply(lambda x: x.split("_")[0] if str(x)!="None" else "")  -> 256_AA1 to 256
