@@ -182,3 +182,11 @@
     
     
     df["Detail"] = df["Order_Op"].apply(lambda x: x.split("_")[0] if str(x)!="None" else "")  -> 256_AA1 to 256
+    
+    df_slitter['rel_letter'] = df_slitter['rel_letter'].apply(lambda x: '(' + x + ')' if x != " " else "" )
+    df_slitter['order_no'] = df_slitter[['order_no','rel_letter']].apply(lambda x: ''.join(map(str,x)), axis=1)
+    df_slitter['prev_op'] = df_slitter[['prev_op_type','prev_op_end_time']].apply(lambda x: ' '.join(map(str,x[x.notnull()])), axis=1)
+    df_slitter['rel_due_date'] = df_slitter[['rel_due_date','HoldCode']].apply(lambda x: '/'.join(map(str,x[x.notnull()])), axis=1)
+    df_slitter=df_slitter.astype({"CoreCode":str})
+    df_slitter['CoreCode'] = df_slitter['CoreCode'].apply(lambda x: x[:2] if 'HD Fiber' in str(x) else x[:1] if str(x)!="nan" else "")
+    furnace_df['cc']= furnace_df['machine_id'].apply(lambda x: int(str(x.replace('F',""))))
