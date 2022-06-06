@@ -190,3 +190,6 @@
     df_slitter=df_slitter.astype({"CoreCode":str})
     df_slitter['CoreCode'] = df_slitter['CoreCode'].apply(lambda x: x[:2] if 'HD Fiber' in str(x) else x[:1] if str(x)!="nan" else "")
     furnace_df['cc']= furnace_df['machine_id'].apply(lambda x: int(str(x.replace('F',""))))
+    
+    
+    naive[naive['e_start_date'].notna()].shape
