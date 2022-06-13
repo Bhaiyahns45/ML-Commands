@@ -195,3 +195,7 @@
     
     
     naive[naive['e_start_date'].notna()].shape
+    
+    df = df[df['A'].isin([3,6])]  , filter row for value having 3,6
+    
+    
