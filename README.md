@@ -115,6 +115,16 @@
     
     
     df['spend_date_mt']=pd.to_datetime(df['spend_date_mt'].astype(str), format='%d-%m-%Y')
+    
+    
+    no_of_day=[]
+    for i in range(len(df)):
+        e_start_date=df.e_start_date[i]
+        prevopenddate=df.prevopenddate[i]
+        d = e_start_date - prevopenddate
+        no_of_day.append(d)
+    df["no_of_days"]= no_of_day 
+    df['difference'] = df['no_of_days'] / pd.Timedelta('1 hours')
 
 
 ### other commands
