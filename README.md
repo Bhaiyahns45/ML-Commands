@@ -211,6 +211,8 @@
     xls = pd.ExcelFile('path\\file_name.xlsx')
     df1 = pd.read_excel(xls, 'sheet_name')
     
+    df3 = pd.concat([df1, df2], ignore_index = True)
+    
     
     
     
