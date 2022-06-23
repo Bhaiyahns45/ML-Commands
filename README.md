@@ -208,4 +208,9 @@
     
     df = df[df['A'].isin([3,6])]  , filter row for value having 3,6
     
+    xls = pd.ExcelFile('path\\file_name.xlsx')
+    df1 = pd.read_excel(xls, 'sheet_name')
+    
+    
+    
     
