@@ -125,6 +125,40 @@
         no_of_day.append(d)
     df["no_of_days"]= no_of_day 
     df['difference'] = df['no_of_days'] / pd.Timedelta('1 hours')
+    
+    
+    
+###  Time-Series
+
+    ## resample abbrebation
+
+    B         business day frequency
+    C         custom business day frequency (experimental)
+    D         calendar day frequency
+    W         weekly frequency
+    M         month end frequency
+    SM        semi-month end frequency (15th and end of month)
+    BM        business month end frequency
+    CBM       custom business month end frequency
+    MS        month start frequency
+    SMS       semi-month start frequency (1st and 15th)
+    BMS       business month start frequency
+    CBMS      custom business month start frequency
+    Q         quarter end frequency
+    BQ        business quarter endfrequency
+    QS        quarter start frequency
+    BQS       business quarter start frequency
+    A         year end frequency
+    BA, BY    business year end frequency
+    AS, YS    year start frequency
+    BAS, BYS  business year start frequency
+    BH        business hour frequency
+    H         hourly frequency
+    T, min    minutely frequency
+    S         secondly frequency
+    L, ms     milliseconds
+    U, us     microseconds
+    N         nanoseconds
 
 
 ### other commands
