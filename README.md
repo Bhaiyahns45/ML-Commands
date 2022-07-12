@@ -248,5 +248,14 @@
     df3 = pd.concat([df1, df2], ignore_index = True)
     
     
+    df = penalty_df.copy()
+    df1_grouped  = df.groupby(['col1', 'col2'])
+    count = 0
+
+    for group_name, df_group in df1_grouped:
+        if df_group.shape[0] == 1:
+            continue
+    
+    
     
     
