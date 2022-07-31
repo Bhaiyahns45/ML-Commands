@@ -29,6 +29,18 @@
 
     from sklearn.model_selection import GridSearchCV
     
+    from sklearn.model_selection import train_test_split
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2,  random_state=42)
+    
+    
+### scaling 
+
+    from sklearn.preprocessing import MinMaxScaler
+    scaler=MinMaxScaler()
+    X_scaled=scaler.fit_transform(X)
+    X_scaled_df = pd.DataFrame(X_scaled, columns = X.columns)
+    
+    
     
 ### get all categorial columns name
     df.select_dtypes(include=['object']).columns.tolist()
