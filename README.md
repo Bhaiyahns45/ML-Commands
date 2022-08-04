@@ -209,26 +209,27 @@
         
    
     
-    df1['rel'] = df1['rel'].apply(lambda x: '(' + x + ')' if x != " " else "" )
+    df1['col'] = df1['col'].apply(lambda x: '(' + x + ')' if x != " " else "" )
     
-    df1['order_no'] = df1[['order_no','rel']].apply(lambda x: ''.join(map(str,x)), axis=1)
+    df1['col'] = df1[['col','col1']].apply(lambda x: ''.join(map(str,x)), axis=1)
     
-    df1["rel"] = ["Yes" if len(df1.rel[i]) == 0 else "NO" for i in range(len(df1))]
+    df1["col"] = ["Yes" if len(df1.col[i]) == 0 else "NO" for i in range(len(df1))]
     
-    df1['order_no'] = df1[['order_no','rel']].apply(lambda x: ''.join(map(str,x[x.notnull()])), axis=1)
+    df1['col'] = df1[['col','col1']].apply(lambda x: ''.join(map(str,x[x.notnull()])), axis=1)
     
     df1['new_col'] = df1['rem_ops'].apply(lambda x: "yes" if 'A' in str(x) else "" ) 
     
     df1['prev_op_end_time'].mask(df1['prev_op_end_time'] == 'First Operation', '', inplace=True)
     
-    ignore_name =['CCLK','No-Plastic','NoWash']
+    ignore_name =['col1','col2','col3']
     df['special_column'] = df['Special'].apply(lambda x: ','.join(list(set(x.split(",")) - set(ignore_name))))
+    
     
     from collections import Counter
     Counter(train_copy.dtypes.values)
     
     
-    index_names = df[ (df.Device == "Montage Endtaetigkeit / stat. IBS (Werk)") | (df.Device == "Montage")].index
+    index_names = df[ (df.Device == "xyz") | (df.Device == "xyz")].index
     df.drop(index_names, inplace = True)
     df.reset_index(inplace=True)
     
@@ -239,14 +240,14 @@
     
     df["Detail"] = df["Order_Op"].apply(lambda x: x.split("_")[0] if str(x)!="None" else "")  -> 256_AA1 to 256
     
-    df1['rel_letter'] = df_slitter['rel_letter'].apply(lambda x: '(' + x + ')' if x != " " else "" )
-    df1['order_no'] = df_slitter[['order_no','rel_letter']].apply(lambda x: ''.join(map(str,x)), axis=1)
+    df1['col'] = df_slitter['col'].apply(lambda x: '(' + x + ')' if x != " " else "" )
+    df1['col'] = df_slitter[['col','col1']].apply(lambda x: ''.join(map(str,x)), axis=1)
     df1['prev_op'] = df1[['prev_op_type','prev_op_end_time']].apply(lambda x: ' '.join(map(str,x[x.notnull()])), axis=1)
-    df1['rel_due_date'] = df1[['rel_due_date','HoldCode']].apply(lambda x: '/'.join(map(str,x[x.notnull()])), axis=1)
+    df1['col'] = df1[['col','col1']].apply(lambda x: '/'.join(map(str,x[x.notnull()])), axis=1)
     
     df1=df_slitter.astype({"CoreCode":str})
     
-    df1['CoreCode'] = df1['CoreCode'].apply(lambda x: x[:2] if 'HD Fiber' in str(x) else x[:1] if str(x)!="nan" else "")
+    df1['col'] = df1['col'].apply(lambda x: x[:2] if 'xr' in str(x) else x[:1] if str(x)!="nan" else "")
     df1['cc']= df1['machine_id'].apply(lambda x: int(str(x.replace('F',""))))
     
     
