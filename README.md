@@ -240,8 +240,8 @@
     
     df["Detail"] = df["Order_Op"].apply(lambda x: x.split("_")[0] if str(x)!="None" else "")  -> 256_AA1 to 256
     
-    df1['col'] = df_slitter['col'].apply(lambda x: '(' + x + ')' if x != " " else "" )
-    df1['col'] = df_slitter[['col','col1']].apply(lambda x: ''.join(map(str,x)), axis=1)
+    df1['col'] = df['col'].apply(lambda x: '(' + x + ')' if x != " " else "" )
+    df1['col'] = df[['col','col1']].apply(lambda x: ''.join(map(str,x)), axis=1)
     df1['prev_op'] = df1[['prev_op_type','prev_op_end_time']].apply(lambda x: ' '.join(map(str,x[x.notnull()])), axis=1)
     df1['col'] = df1[['col','col1']].apply(lambda x: '/'.join(map(str,x[x.notnull()])), axis=1)
     
