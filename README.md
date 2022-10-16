@@ -139,6 +139,19 @@
     df['difference'] = df['no_of_days'] / pd.Timedelta('1 hours')
     
     
+    def time_mapping(h):
+    if 8<h<12:
+        return 'Morning'
+    
+    elif 12<h<16:
+        return "Afternoon"
+    else:
+        return "Evening"
+    
+    
+    df['Time'] = df['Time'].apply(lambda x: time_mapping(int(x.strftime("%H"))))
+    
+    
     
 ###  Time-Series
 
