@@ -199,7 +199,7 @@
     
     df.loc[df['id'] == 20 ], 'budget'] = 50
     
-    df.loc[df['release_date'].isnull() == true ], 'release_date'] = '01/01/1998'
+    df.loc[df['release_date'].isnull() == True , 'release_date'] = '01/01/1998'
     
     with open('dict.pkl', 'wb') as f:
         pickle.dump(d, f)
