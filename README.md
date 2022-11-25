@@ -283,6 +283,22 @@
     for group_name, df_group in df1_grouped:
         if df_group.shape[0] == 1:
             continue
+            
+            
+    df = df[~df.machine_name.str.contains("F")]
+    
+    for _ , row in df.iterrows():
+        print(row.col1, row.col2)
+        
+        
+    df.reset_index(inplace=True)
+    df.groupby('col1').agg({'index':[ 'min', 'max']}).reset_index()
+    df_grp.transpose().reset_index(level=0, drop=True).transpose()
+    df_grp.rename(columns={ df_grp.columns[0]: "col1" })
+     
+     
+    
+    
     
     
     
