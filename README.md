@@ -187,8 +187,14 @@
 
 
 ### other commands
-        
-        
+
+
+    path = r'xyz.xlsx'
+    
+    with pd.ExcelWriter(path, mode="a", engine="openpyxl", if_sheet_exists="replace") as writer:
+        df.to_excel(writer, sheet_name="Sheet_4", index= False)
+    
+   
     [df.loc[df['tag'] == i, 'links'] for i in all_links]
     
     [df.loc[df["tag"]==i].links.values[0] for i in l]
