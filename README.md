@@ -226,7 +226,7 @@
         
         
         
-   
+   df1['code'] = df1['col'].map(d)
     
     df1['col'] = df1['col'].apply(lambda x: '(' + x + ')' if x != " " else "" )
     
