@@ -1,7 +1,8 @@
-# ML-Commands
+## ML-Commands
 
 
-### Import
+---
+
     import matplotlib.pyplot as plt
     import seaborn as sns
     import numpy as np
@@ -33,7 +34,7 @@
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2,  random_state=42)
     
     
-### scaling 
+---
 
     from sklearn.preprocessing import MinMaxScaler
     scaler=MinMaxScaler()
@@ -41,15 +42,9 @@
     X_scaled_df = pd.DataFrame(X_scaled, columns = X.columns)
     
     
-    
-### get all categorial columns name
-    df.select_dtypes(include=['object']).columns.tolist()
-   
-### get all numerical columns name
-    df.select_dtypes(include=np.number).columns.tolist()
-    
-    
-### for confusion matrix
+---
+
+### Confusion Matrix
 
     from sklearn.metrics import confusion_matrix
     cm = confusion_matrix(y_test, y_predicted)
@@ -62,7 +57,7 @@
     plt.xlabel('Predicted')
     plt.ylabel('Truth')
     
-### for doing one_hot encoding fot all categorical features
+### One-Hot Encoding
 
     def category_onehot_categorical_col(categorical_col,final_df):
     df_final=final_df
@@ -85,9 +80,10 @@
         
     return df_final
     
+
+---
     
-    
-### heatmap
+### Heatmap
 
     num_df = df.select_dtypes(include=np.number)
    
@@ -108,7 +104,10 @@
                     col_corr.add(colname)
         return col_corr
 
-## date-time
+
+---
+
+## Date-Time
 
     df1['Start'] = df1['Start'].dt.strftime('%b %d %Y %X')
     df1['Finish'] = df1['Finish'].dt.strftime('%b %d %Y %X')
@@ -151,7 +150,8 @@
     
     df['Time'] = df['Time'].apply(lambda x: time_mapping(int(x.strftime("%H"))))
     
-    
+
+---
     
 ###  Time-Series
 
@@ -186,15 +186,27 @@
     N         nanoseconds
 
 
-### other commands
+---
 
+### Plotly
+
+    import plotly.express as px
+        
+    percent_missing = df.isnull().sum() * 100 / len(df)
+    missing_value_df = pd.DataFrame({'column_name': df.columns,'percent_missing': percent_missing})
+    missing_value_df.sort_values(by=['percent_missing'], inplace=True,ascending=False )
+    fig = px.bar(missing_value_df, x='column_name', y='percent_missing', title="Missing value %",height=700)
+    fig.show()
+
+---
+
+### General Commands
 
     path = r'xyz.xlsx'
     
     with pd.ExcelWriter(path, mode="a", engine="openpyxl", if_sheet_exists="replace") as writer:
         df.to_excel(writer, sheet_name="Sheet_4", index= False)
     
-   
     [df.loc[df['tag'] == i, 'links'] for i in all_links]
     
     [df.loc[df["tag"]==i].links.values[0] for i in l]
@@ -205,28 +217,23 @@
     
     df.loc[df['id'] == 20 ], 'budget'] = 50
     
-    df.loc[df['release_date'].isnull() == True , 'release_date'] = '01/01/1998'
+    df.loc[df['date_col'].isnull() == True , 'date_col'] = '01/01/1998'
+    
+    df1['col'].mask(df1['col'] == 'xyz', '', inplace=True)
+   
+    df.select_dtypes(include=['object']).columns.tolist()
+   
+    df.select_dtypes(include=np.number).columns.tolist()
     
     with open('dict.pkl', 'wb') as f:
         pickle.dump(d, f)
-        
-        
+     
     with open('dict.pkl', 'rb') as f:
         d = pickle.load(f)
         
+    -----------------------------------------------------------------------------------------------------------------
         
-        
-    import plotly.express as px
-        
-    percent_missing = df.isnull().sum() * 100 / len(df)
-    missing_value_df = pd.DataFrame({'column_name': df.columns,'percent_missing': percent_missing})
-    missing_value_df.sort_values(by=['percent_missing'], inplace=True,ascending=False )
-    fig = px.bar(missing_value_df, x='column_name', y='percent_missing', title="Missing value %",height=700)
-    fig.show()
-        
-        
-        
-   df1['code'] = df1['col'].map(d)
+    df1['code'] = df1['col'].map(d)
     
     df1['col'] = df1['col'].apply(lambda x: '(' + x + ')' if x != " " else "" )
     
@@ -238,24 +245,18 @@
     
     df1['new_col'] = df1['rem_ops'].apply(lambda x: "yes" if 'A' in str(x) else "" ) 
     
-    df1['prev_op_end_time'].mask(df1['prev_op_end_time'] == 'First Operation', '', inplace=True)
-    
     ignore_name =['col1','col2','col3']
     df['special_column'] = df['Special'].apply(lambda x: ','.join(list(set(x.split(",")) - set(ignore_name))))
-    
-    
+   
     from collections import Counter
     Counter(train_copy.dtypes.values)
-    
-    
+   
     index_names = df[ (df.Device == "xyz") | (df.Device == "xyz")].index
     df.drop(index_names, inplace = True)
     df.reset_index(inplace=True)
     
     df1 = df[(df["Production_line"] == pl_id )  & (df["Task"] == "Operation Change")]
     df1 = df[(df["Production_line"].notnull() )  & (df["Task"] == "Operation Change")]
-    
-    
     
     df["Detail"] = df["Order_Op"].apply(lambda x: x.split("_")[0] if str(x)!="None" else "")  -> 256_AA1 to 256
     
@@ -264,11 +265,10 @@
     df1['prev_op'] = df1[['prev_op_type','prev_op_end_time']].apply(lambda x: ' '.join(map(str,x[x.notnull()])), axis=1)
     df1['col'] = df1[['col','col1']].apply(lambda x: '/'.join(map(str,x[x.notnull()])), axis=1)
     
-    df1=df_slitter.astype({"CoreCode":str})
-    
     df1['col'] = df1['col'].apply(lambda x: x[:2] if 'xr' in str(x) else x[:1] if str(x)!="nan" else "")
     df1['cc']= df1['machine_id'].apply(lambda x: int(str(x.replace('F',""))))
     
+    df1=df_slitter.astype({"CoreCode":str})
     
     naive[naive['e_start_date'].notna()].shape
     
@@ -281,7 +281,6 @@
     
     df3 = pd.concat([df1, df2], ignore_index = True)
     
-    
     df = penalty_df.copy()
     df1_grouped  = df.groupby(['col1', 'col2'])
     count = 0
@@ -290,22 +289,22 @@
         if df_group.shape[0] == 1:
             continue
             
+    b1 = data.groupby(by=['col1', 'col2']).agg({'Total_Cost': 'sum'}).reset_index()
+    b1.columns = [i for i in b1.columns]
+     
+    list(df3.groupby('id').agg({'product_type':lambda x: list(x)})['product_type'].values)
             
     df = df[~df.machine_name.str.contains("F")]
     
     for _ , row in df.iterrows():
         print(row.col1, row.col2)
         
-        
     df.reset_index(inplace=True)
     df.groupby('col1').agg({'index':[ 'min', 'max']}).reset_index()
     df_grp.transpose().reset_index(level=0, drop=True).transpose()
     df_grp.rename(columns={ df_grp.columns[0]: "col1" })
-     
-     
-    
-    
-    
+   
+   
     
     
     
