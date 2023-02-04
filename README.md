@@ -197,7 +197,7 @@
     missing_value_df.sort_values(by=['percent_missing'], inplace=True,ascending=False )
     fig = px.bar(missing_value_df, x='column_name', y='percent_missing', title="Missing value %",height=700)
     
-    fig3.update_layout(title_font_size=30, font_size=15, title_font_family="Arial",legend_title_text='XYZ',margin=dict(b=130))
+    fig3.update_layout(title_font_size=30, font_size=15, title_font_family="Arial", legend_title_text='XYZ', margin=dict(b=130))
     
     fig.show()
 
