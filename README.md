@@ -299,6 +299,8 @@
             
     df = df[~df.machine_name.str.contains("F")]
     
+    df[~df.col.isnull()]
+    
     for _ , row in df.iterrows():
         print(row.col1, row.col2)
         
