@@ -150,6 +150,9 @@
     
     df['Time'] = df['Time'].apply(lambda x: time_mapping(int(x.strftime("%H"))))
     
+    #remove microsec from datetime col
+    df['datetime_col'] = df['datetime_col'].dt.floor('1s')
+    
 
 ---
     
