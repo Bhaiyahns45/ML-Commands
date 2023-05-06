@@ -43,6 +43,20 @@
     
     
 ---
+### Profiling Results
+
+    from pandas_profiling import ProfileReport
+    from IPython.display import display, HTML
+    df_profile = ProfileReport(df, minimal=True, title="Profiling Report", progress_bar=False, infer_dtypes=False)
+    profile_html = df_profile.to_html()
+
+
+    display(HTML(profile_html))
+
+
+
+---
+
 
 ### Confusion Matrix
 
