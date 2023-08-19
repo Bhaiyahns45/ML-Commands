@@ -252,6 +252,12 @@
         d = pickle.load(f)
         
     -----------------------------------------------------------------------------------------------------------------
+
+    initial_coulmns = ['C', 'B']
+
+    # Create a new DataFrame with desired column order
+    new_columns_order = initial_coulmns + [col for col in df if col not in initial_coulmns]
+    new_df = df[new_columns_order]
         
     df1['code'] = df1['col'].map(d)
     
@@ -286,7 +292,7 @@
     df1['col'] = df1[['col','col1']].apply(lambda x: '/'.join(map(str,x[x.notnull()])), axis=1)
     
     df1['col'] = df1['col'].apply(lambda x: x[:2] if 'xr' in str(x) else x[:1] if str(x)!="nan" else "")
-    df1['cc']= df1['machine_id'].apply(lambda x: int(str(x.replace('F',""))))
+    df1['cc']= df1['m_id'].apply(lambda x: int(str(x.replace('F',""))))
     
     df1=df_slitter.astype({"CoreCode":str})
     
