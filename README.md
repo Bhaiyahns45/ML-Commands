@@ -331,6 +331,46 @@
     df.groupby('col1').agg({'index':[ 'min', 'max']}).reset_index()
     df_grp.transpose().reset_index(level=0, drop=True).transpose()
     df_grp.rename(columns={ df_grp.columns[0]: "col1" })
+
+    -----------------------------------------------------------------------------------------------------------------
+    spinner code
+
+    from IPython.display import display, HTML, clear_output
+
+    # CSS for the moving circle spinner
+    spinner_css = """
+    <style>
+    @keyframes spinner {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    
+    .spinner {
+        border: 4px solid #28a745;
+        border-top: 4px solid transparent;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        animation: spinner 2s linear infinite;
+        display: inline-block;
+    }
+    </style>
+    """
+    
+    # Function to display the moving circle spinner
+    def show_spinner():
+        display(HTML(spinner_css + '<div class="spinner"></div>'))
+    
+    # Display the spinner
+    show_spinner()
+    
+    # Simulate a time-consuming task
+    import time
+    time.sleep(5)  # Replace this with your actual code
+    
+    # Hide the spinner when the task is done
+    clear_output()
+
    
    
     
